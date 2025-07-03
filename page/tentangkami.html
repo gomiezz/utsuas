@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+    <link rel="stylesheet" href="./css/chart.css">
+<!-- Tentang Kami Section -->
+<section id="tentang" class="section-about">
+    <div class="container">
+        <div class="section-title">
+            <h2>Tentang Kami</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                    alt="Tentang Kami">
+            </div>
+            <div class="about-text">
+                <h3>TechShop - Solusi Komputer Terbaik</h3>
+                <p>TechShop didirikan pada tahun 2020 dengan visi untuk menyediakan komponen komputer berkualitas tinggi
+                    dengan harga yang kompetitif. Selama lebih dari satu dekade, kami telah melayani ribuan pelanggan
+                    yang puas, mulai dari gamers, profesional kreatif, hingga perusahaan besar.</p>
+                <p>Kami bangga menjadi mitra terpercaya dalam membangun PC impian Anda. Tim kami terdiri dari para ahli
+                    yang berpengalaman dan selalu mengikuti perkembangan terbaru di dunia teknologi.</p>
+                <p>Di TechShop, kami tidak hanya menjual produk, tetapi juga memberikan solusi lengkap untuk kebutuhan
+                    komputasi Anda. Setiap produk yang kami jual melalui proses quality control yang ketat untuk
+                    memastikan kualitas terbaik untuk pelanggan kami.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="chart-header">
+        <h1><i class="fas fa-chart-line"></i> Grafik Penjualan 2025</h1>
+        <p>Analisis performa penjualan komponen komputer bulanan</p>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="filter-controls">
+        <div class="filter-group">
+            <label><i class="fas fa-filter"></i> Filter:</label>
+            <select id="year-filter">
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label><i class="fas fa-microchip"></i> Kategori:</label>
+            <select id="category-filter">
+                <option value="all">Semua Produk</option>
+                <option value="cpu">Processor</option>
+                <option value="gpu">VGA</option>
+                <option value="ram">RAM</option>
+                <option value="storage">Storage</option>
+            </select>
+        </div>
+
+        <button id="apply-filter"><i class="fas fa-sync-alt"></i> Terapkan</button>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #4fc3f7 0%, #3da8d8 100%);">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Total Penjualan</h3>
+                <h2>842 Unit</h2>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Total Pendapatan</h3>
+                <h2>Rp 12.8M</h2>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #ff9800 0%, #fb8c00 100%);">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Produk Terlaris</h3>
+                <h2>RTX 3080 Ti</h2>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #f44336 0%, #e53935 100%);">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Pertumbuhan</h3>
+                <h2>+24.5%</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Container -->
+    <div class="chart-container">
+        <div class="chart-wrapper">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+</div>
+<script src="js/chart.js"></script>
+
+</html>

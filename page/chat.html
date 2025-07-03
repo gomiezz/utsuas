@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Komputer - Chat</title>
+    <style>
+        /* Style untuk chat bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background-color: #2e86de;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .chat-bubble img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        /* Style untuk modal chat */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .chat-header {
+            background-color: #2e86de;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .chat-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        
+        .chat-message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        
+        .bot-message {
+            background-color: #e6e6e6;
+            border-top-left-radius: 5px;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background-color: #2e86de;
+            color: white;
+            border-top-right-radius: 5px;
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        .chat-input button {
+            background-color: #2e86de;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        /* Animasi mengambang */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Responsif */
+        @media (max-width: 480px) {
+            .chat-modal {
+                width: 90%;
+                right: 5%;
+                bottom: 100px;
+                height: 60vh;
+            }
+            
+            .chat-bubble {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" id="chatBubble">
+        <img src="https://cdn-icons-png.flaticon.com/512/2452/2452499.png" alt="Chat Icon">
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <h3>Tanya CS TechShop</h3>
+            <button class="close-chat" id="closeChat">×</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message bot-message">
+                Halo! Selamat datang di TechShop. Ada yang bisa kami bantu?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Ketik pesan Anda..." autocomplete="off">
+            <button id="sendMessage">→</button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk membuka/menutup modal chat
+        const chatBubble = document.getElementById('chatBubble');
+        const chatModal = document.getElementById('chatModal');
+        const closeChat = document.getElementById('closeChat');
+        
+        chatBubble.addEventListener('click', function() {
+            chatModal.style.display = 'flex';
+        });
+        
+        closeChat.addEventListener('click', function() {
+            chatModal.style.display = 'none';
+        });
+        
+        // Fungsi untuk mengirim pesan
+        const userInput = document.getElementById('userInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatBody = document.getElementById('chatBody');
+        
+        function sendUserMessage() {
+            const message = userInput.value.trim();
+            if (message !== '') {
+                // Tambahkan pesan pengguna
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chat-message user-message';
+                userMessage.textContent = message;
+                chatBody.appendChild(userMessage);
+                
+                // Kosongkan input
+                userInput.value = '';
+                
+                // Scroll ke bawah
+                chatBody.scrollTop = chatBody.scrollHeight;
+                
+                // Simulasikan balasan dari CS (dalam aplikasi nyata, ini akan berkomunikasi dengan server)
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'chat-message bot-message';
+                    
+                    // Balasan sederhana berdasarkan kata kunci
+                    if (message.toLowerCase().includes('harga') || message.toLowerCase().includes('berapa')) {
+                        botMessage.textContent = 'Untuk informasi harga produk, silakan kunjungi halaman produk kami atau beri tahu kami produk yang Anda minati.';
+                    } else if (message.toLowerCase().includes('stok') || message.toLowerCase().includes('tersedia')) {
+                        botMessage.textContent = 'Kami akan cek ketersediaan stok untuk Anda. Produk apa yang Anda tanyakan?';
+                    } else if (message.toLowerCase().includes('terima kasih') || message.toLowerCase().includes('thanks')) {
+                        botMessage.textContent = 'Sama-sama! Jika ada pertanyaan lain, jangan ragu untuk bertanya.';
+                    } else {
+                        botMessage.textContent = 'Terima kasih atas pesan Anda. Customer service kami akan segera membalas pesan ini.';
+                    }
+                    
+                    chatBody.appendChild(botMessage);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1000);
+            }
+        }
+        
+        // Kirim pesan saat tombol diklik atau enter ditekan
+        sendMessage.addEventListener('click', sendUserMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+    </script>
+</body>
+</html>
