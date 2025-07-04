@@ -36,9 +36,9 @@ $p = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM produk WHERE id=$id")
       <p class="product-description"><?= nl2br($p['deskripsi']) ?></p>
       <h3 class="specs-title">Spesifikasi Teknis</h3>
       <div class="specs-table"><?php
-      $spek = mysqli_query($conn, "SELECT * FROM spesifikasi WHERE id = ".$p['kategori']);
+      $spek = mysqli_query($conn, "SELECT * FROM kategori WHERE id = ".$p['kategori']);
       $nilai_spek = mysqli_query($conn, "SELECT * FROM nilai_spesifikasi WHERE produk = ".$p['id']);
-      $_spek = explode(",", mysqli_fetch_assoc($spek)['nama']);
+      $_spek = explode(",", mysqli_fetch_assoc($spek)['spesifikasi']);
       $_nilai_spek = explode(",", mysqli_fetch_assoc($nilai_spek)['nilai']);
       for ($i = 0; $i < count($_spek); $i++) {
             echo $_spek[$i].": ". $_nilai_spek[$i] . "<br>";

@@ -29,14 +29,14 @@ if (isset($_POST['submit'])) {
     VALUES ('$nama', '$harga', '$deskripsi', '$kategori', '$gambar', '$th1', '$th2', '$th3', '$th4', '$stok', '$rating')");
 
     // TIDAK PAKAI HEADER, pakai SCRIPT
-    echo "<script>alert('Produk berhasil ditambahkan!'); window.location.href='index.php?page=adminlist';</script>";
+    echo "<script>alert('Produk berhasil ditambahkan!'); window.location.href='index.php?page=produk';</script>";
     exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
-<body>
+<body> 
     <h1>Tambah Produk</h1>
     <form method="post" enctype="multipart/form-data">
         <p>Nama: <input type="text" name="nama" required></p>

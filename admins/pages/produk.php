@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php';
-?>
+?> 
   <style>
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid #ccc; padding: 8px; }
@@ -24,22 +24,26 @@ include 'koneksi.php';
     <?php
     $produk = mysqli_query($conn, "SELECT * FROM produk");
     while ($p = mysqli_fetch_assoc($produk)) {
-      $kategori = mysqli_query($conn, "SELECT * FROM kategori WHERE id = ".$p['kategori']);
-      $spek = mysqli_query($conn, "SELECT * FROM spesifikasi WHERE id = ".$p['kategori']);
+      $spek = mysqli_query($conn, "SELECT * FROM kategori WHERE id = ".$p['kategori']);
+      $asoc = mysqli_fetch_assoc($spek);
       $nilai_spek = mysqli_query($conn, "SELECT * FROM nilai_spesifikasi WHERE produk = ".$p['id']);
-      $_spek = explode(",", mysqli_fetch_assoc($spek)['nama']);
-      $_nilai_spek = explode(",", mysqli_fetch_assoc($nilai_spek)['nilai']);
+      $_spek = explode(",", $asoc['spesifikasi']);
+      if(mysqli_num_rows($nilai_spek)>0) $_nilai_spek = explode(",", mysqli_fetch_assoc($nilai_spek)['nilai']);
     ?>
     <tr>
       <td><?= $p['id'] ?></td>
       <td><?= $p['nama'] ?></td>
-      <td><?= mysqli_fetch_assoc($kategori)['nama'] ?></td>
+      <td><?= $asoc['nama'] ?></td>
       <td><?= $p['deskripsi'] ?></td>
       <td><img src=".././<?= $p['gambar'] ?>" alt=""></td>
       <td>
         <?php
-        for ($i = 0; $i < count($_spek); $i++) {
-            echo $_spek[$i].": ". $_nilai_spek[$i] . "<br>";
+        if(mysqli_num_rows($nilai_spek)>0){
+          for ($i = 0; $i < count($_spek); $i++) {
+              echo $_spek[$i].": ". $_nilai_spek[$i] . "<br>";
+          }
+        }else{
+          echo '<p style="color:red;">Mohon tambahkan nilai spesifikasi untuk produk ini!</p>';
         }
         ?>
       </td>

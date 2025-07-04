@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php';
-?>
+?> 
   <style>
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid #ccc; padding: 8px; }
@@ -13,6 +13,7 @@ include 'koneksi.php';
     <tr>
       <th>ID</th>
       <th>Nama</th>
+      <th>Spesifikasi</th>
       <th>Aksi</th>
     </tr>
     <?php
@@ -22,6 +23,7 @@ include 'koneksi.php';
     <tr>
       <td><?= $p['id'] ?></td>
       <td><?= $p['nama'] ?></td>
+      <td><?= $p['spesifikasi'] ?></td>
       <td>
         <a href="index.php?page=editKategori&id=<?= $p['id'] ?>" class="btn">Edit</a>
         <a href="index.php?page=hapusKategori&id=<?= $p['id'] ?>" class="btn" onclick="return confirm('Hapus kategori?')">Hapus</a>

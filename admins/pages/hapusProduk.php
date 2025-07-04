@@ -1,11 +1,11 @@
 <?php
 include 'koneksi.php';
-
+  
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Hapus file gambar (opsional kalau mau)
-    $result = mysqli_query($conn, "SELECT gambar, thumbnail1, thumbnail2, thumbnail3, thumbnail4 FROM produk WHERE id_produk='$id'");
+    $result = mysqli_query($conn, "SELECT gambar, thumbnail1, thumbnail2, thumbnail3, thumbnail4 FROM produk WHERE id='$id'");
     $row = mysqli_fetch_assoc($result);
     $folder = "gambar";
     @unlink("$folder/" . $row['gambar']);
@@ -15,12 +15,12 @@ if (isset($_GET['id'])) {
     @unlink("$folder/" . $row['thumbnail4']);
 
     // Hapus data di DB
-    mysqli_query($conn, "DELETE FROM produk WHERE id_produk='$id'");
+    mysqli_query($conn, "DELETE FROM produk WHERE id='$id'");
 
-    echo "<script>alert('Produk berhasil dihapus!'); window.location.href='index.php?page=adminlist';</script>";
+    echo "<script>alert('Produk berhasil dihapus!'); window.location.href='index.php?page=produk';</script>";
     exit;
 } else {
-    echo "<script>alert('ID tidak ditemukan'); window.location.href='index.php?page=adminlist';</script>";
+    echo "<script>alert('ID tidak ditemukan'); window.location.href='index.php?page=produk';</script>";
     exit;
 }
 ?>

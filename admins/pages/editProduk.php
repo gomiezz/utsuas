@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php';
-
+ 
 $id = $_GET['id'];
 
 // Ambil data produk lama
@@ -11,7 +11,6 @@ if (isset($_POST['update'])) {
     $nama = $_POST['nama'];
     $harga = $_POST['harga'];
     $deskripsi = $_POST['deskripsi'];
-    $spesifikasi = $_POST['spesifikasi'];
     $stok = $_POST['stok'];
     $rating = $_POST['rating'];
 
@@ -105,7 +104,6 @@ if (isset($_POST['update'])) {
         nama='$nama',
         harga='$harga',
         deskripsi='$deskripsi',
-        spesifikasi='$spesifikasi',
         gambar='$gambar',
         thumbnail1='$th1',
         thumbnail2='$th2',
@@ -113,10 +111,10 @@ if (isset($_POST['update'])) {
         thumbnail4='$th4',
         stok='$stok',
         rating='$rating'
-        WHERE id_produk='$id'
+        WHERE id='$id'
     ");
 
-    echo "<script>alert('Produk berhasil diupdate!'); window.location.href='index.php?page=adminlist';</script>";
+    echo "<script>alert('Produk berhasil diupdate!'); window.location.href='index.php?page=produk';</script>";
     exit;
 }
 ?>
@@ -126,13 +124,12 @@ if (isset($_POST['update'])) {
     <p>Nama: <input type="text" name="nama" value="<?= $p['nama'] ?>" required></p>
     <p>Harga: <input type="number" name="harga" value="<?= $p['harga'] ?>" required></p>
     <p>Deskripsi:<br><textarea name="deskripsi" rows="5"><?= $p['deskripsi'] ?></textarea></p>
-    <p>Spesifikasi:<br><textarea name="spesifikasi" rows="5"><?= $p['spesifikasi'] ?></textarea></p>
     <p>Stok: <input type="number" name="stok" value="<?= $p['stok'] ?>"></p>
     <p>Rating: <input type="number" step="0.1" name="rating" value="<?= $p['rating'] ?>"></p>
 
     <p>Gambar Utama Sekarang:<br>
         <?php if ($p['gambar']) { ?>
-            <img src="gambar/<?= $p['gambar'] ?>" width="150"><br>
+            <img src=".././<?= $p['gambar'] ?>" width="150"><br>
             <label><input type="checkbox" name="hapus_gambar" value="1"> Hapus Gambar Utama</label>
         <?php } else { ?>
             <em>Tidak ada gambar.</em>
