@@ -48,8 +48,8 @@ $p = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM produk WHERE id=$id")
         <a href="https://wa.me/6285955230855?text=Halo, saya tertarik dengan <?= urlencode($p['nama']) ?>" class="btn-primary">
           <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
         </a>
-        <button class="btn-outline" onclick="addCart('<?= $id ?>')">
-          <i class="fas fa-shopping-cart"></i> Tambah ke Wishlist
+        <button class="btn-outline" onclick="rmCart('<?= $id ?>')">
+          <i class="fas fa-shopping-cart"></i> Hapus dari Wishlist
         </button>
       </div>
     </div>

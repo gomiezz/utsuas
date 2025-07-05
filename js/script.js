@@ -1,7 +1,7 @@
 // Initialize dropdowns with component options
 function populateDropdowns() {
     console.log("[populateDropdowns] Start populating dropdowns");
-    const categories = ['processor', 'vga', 'ram', 'ssd', 'hdd', 'casing', 'motherboard'];
+    // const categories = ['processor', 'vga', 'ram', 'ssd', 'hdd', 'casing', 'motherboard'];
     
     categories.forEach(category => {
         console.log(`[populateDropdowns] Processing category: ${category}`);
@@ -35,7 +35,7 @@ function populateDropdowns() {
 // Update total price and order button
 function updateSummary() {
     console.log("[updateSummary] Starting summary update");
-    const categories = ['processor', 'vga', 'ram', 'ssd', 'hdd', 'casing', 'motherboard'];
+    // const categories = ['processor', 'vga', 'ram', 'ssd', 'hdd', 'casing', 'motherboard'];
     let totalPrice = 0;
     let selectedComponents = [];
 
@@ -89,7 +89,7 @@ function updateSummary() {
 // Add event listeners to dropdowns
 function initializeDropdowns() {
     console.log("[initializeDropdowns] Initializing dropdown event listeners");
-    const categories = ['processor', 'vga', 'ram', 'ssd', 'hdd', 'casing', 'motherboard'];
+    // const categories = ['processor', 'vga', 'ram', 'ssd', 'hdd', 'casing', 'motherboard'];
     
     categories.forEach(category => {
         const select = document.getElementById(`${category}-select`);

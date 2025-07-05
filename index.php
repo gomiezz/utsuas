@@ -1,3 +1,10 @@
+
+<?php
+session_start();
+if(!isset($_SESSION['user'])){
+    $_SESSION['user'] = rand(0,572025);
+}
+?>
 <!DOCTYPE php, name : index.php>
 <html>
 <head>

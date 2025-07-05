@@ -15,6 +15,7 @@ if (isset($_GET['id'])) {
     @unlink("$folder/" . $row['thumbnail4']);
 
     // Hapus data di DB
+    mysqli_query($conn, "DELETE FROM nilai_spesifikasi WHERE produk='$id'");
     mysqli_query($conn, "DELETE FROM produk WHERE id='$id'");
 
     echo "<script>alert('Produk berhasil dihapus!'); window.location.href='index.php?page=produk';</script>";

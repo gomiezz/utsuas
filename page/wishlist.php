@@ -1,11 +1,10 @@
-<?php 
-include 'admins/pages/koneksi.php'; 
+<?php include 'admins/pages/koneksi.php'; 
 if(!isset($_SESSION['user'])){
     $_SESSION['user'] = rand(0,572025);
 }
 
-if(isset($_GET['addcart'])){
-  if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM wishlist WHERE `user`='".$_SESSION['user']."' AND `produk` = '".$_GET['addcart']."'"))<=0)mysqli_query($conn, "INSERT INTO wishlist (`user`,`produk`) VALUES ('".$_SESSION['user']."','".$_GET['addcart']."') ");
+if(isset($_GET['rmcart'])){
+  mysqli_query($conn, "DELETE FROM wishlist WHERE `user` = '".$_SESSION['user']."' AND `produk` = '".$_GET['rmcart']."'");
 }
 
 ?>
@@ -124,41 +123,45 @@ if(isset($_GET['addcart'])){
 </head>
 
 <body>
-
+    <h1>Wishlist anda</h1>
   <div class="products">
     <?php
-    $sql = "SELECT * FROM produk";
+    $sql = "SELECT * FROM wishlist where `user` = '".$_SESSION['user']."'";
     $query = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($query)) {
+        $sql2 = "SELECT * FROM produk where `id` = '".$row['produk']."'";
+        $query2 = mysqli_query($conn, $sql2);
+        while ($row2 = mysqli_fetch_assoc($query2)) {
     ?>
       <div class="product-card">
         <div class="product-image">
-          <img src="<?php echo $row['gambar']; ?>" alt="<?php echo $row['nama']; ?>">
+          <img src="<?php echo $row2['gambar']; ?>" alt="<?php echo $row2['nama']; ?>">
         </div>
         <div class="product-info">
-          <h3><?php echo $row['nama']; ?></h3>
-          <span class="price">Rp <?php echo number_format($row['harga']); ?></span>
-          <button class="btn-view" onclick="openModal(<?php echo $row['id']; ?>)">
+          <h3><?php echo $row2['nama']; ?></h3>
+          <span class="price">Rp <?php echo number_format($row2['harga']); ?></span>
+          <button class="btn-view" onclick="openModal(<?php echo $row2['id']; ?>)">
             <i class="fas fa-eye"></i> Lihat Detail
           </button>
         </div>
       </div>
-    <?php } ?>
+    <?php }} ?>
   </div>
 
   <!-- MODAL -->
   <div id="productModal" class="modal"></div>
 
   <script>
-    function addCart(id) {
-      fetch('?page=produk&addcart=' + id) // <-- Ganti ke router!
+    function rmCart(id) {
+      fetch('?page=wishlist&rmcart=' + id) // <-- Ganti ke router!
         .then(res => res.text())
         .then(html => {
-          window.alert("Berhasil dimasukan ke wishlist!");
+            window.alert("Berhasil dihapus dari wishlist!");
+            document.location.href = document.location.href;
         });
     }
     function openModal(id) {
-      fetch('?page=detail_produk&id=' + id) // <-- Ganti ke router!
+      fetch('?page=detail_produk2&id=' + id) // <-- Ganti ke router!
         .then(res => res.text())
         .then(html => {
           document.getElementById('productModal').innerHTML = html;

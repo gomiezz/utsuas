@@ -31,6 +31,6 @@
 	case 'login':include "pages/page-login.html";break;	
 	case 'register':include "pages/page-register.html";break;		
 	case 'main':
-	default:include"pages/panelkanan.html";	
+	default:include"pages/panelkanan.php";	
 	}
 ?>
