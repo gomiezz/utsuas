@@ -4,7 +4,7 @@
         case 'beranda': include"page/beranda.html";break;
         case 'produk': include"page/produk.php";break;
         case 'rakit': include"page/rakitpc.php";break;
-        case 'tentang': include"page/tentangkami.html";break;
+        case 'tentang': include"page/tentangkami.php";break;
         case 'kontak': include"page/kontak.html";break;
         case 'kegiatan': include"page/kegiatan.php";break;
         case 'wishlist': include"page/wishlist.php";break;

@@ -1,9 +1,12 @@
 
 <?php
 session_start();
+include("./admins/pages/koneksi.php");
 if(!isset($_SESSION['user'])){
     $_SESSION['user'] = rand(0,572025);
 }
+// mysqli_query($conn, "INSERT INTO `pengunjung` (`user`,`bulan`) VALUES ('".$_SESSION['user']."','".date("F Y")."')");
+
 ?>
 <!DOCTYPE php, name : index.php>
 <html>
@@ -11,7 +14,6 @@ if(!isset($_SESSION['user'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechShop - Toko Komponen Komputer Terlengkap</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <link rel="stylesheet" href="./css/style.css">

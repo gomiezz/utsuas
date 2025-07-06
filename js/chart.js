@@ -1,44 +1,4 @@
 
-// Data untuk chart
-const salesData = {
-    labels: [
-        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-    ],
-    datasets: [{
-        label: 'Processor',
-        data: [65, 59, 80, 81, 56, 100, 70, 60, 75, 90, 85, 100],
-        backgroundColor: 'rgba(30, 60, 114, 0.7)',
-        borderColor: 'rgba(30, 60, 114, 1)',
-        borderWidth: 2,
-        tension: 0.3,
-        fill: true
-    }, {
-        label: 'VGA Card',
-        data: [45, 39, 60, 71, 46, 45, 60, 50, 65, 80, 75, 90],
-        backgroundColor: 'rgba(79, 195, 247, 0.7)',
-        borderColor: 'rgba(79, 195, 247, 1)',
-        borderWidth: 2,
-        tension: 0.3,
-        fill: true
-    }, {
-        label: 'RAM',
-        data: [35, 29, 40, 51, 36, 35, 50, 40, 55, 70, 65, 80],
-        backgroundColor: 'rgba(76, 175, 80, 0.7)',
-        borderColor: 'rgba(76, 175, 80, 1)',
-        borderWidth: 2,
-        tension: 0.3,
-        fill: true
-    }, {
-        label: 'Storage',
-        data: [25, 19, 30, 41, 26, 25, 40, 30, 45, 60, 55, 70],
-        backgroundColor: 'rgba(255, 152, 0, 0.7)',
-        borderColor: 'rgba(255, 152, 0, 1)',
-        borderWidth: 2,
-        tension: 0.3,
-        fill: true
-    }]
-};
 
 // Konfigurasi chart
 const config = {
@@ -62,7 +22,7 @@ const config = {
             },
             title: {
                 display: true,
-                text: 'Performa Penjualan Bulanan per Kategori Produk',
+                text: 'Performa Kunjungan Website Bulanan',
                 font: {
                     size: 18,
                     family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
@@ -85,7 +45,7 @@ const config = {
                 usePointStyle: true,
                 callbacks: {
                     label: function (context) {
-                        return context.dataset.label + ': ' + context.raw + ' unit';
+                        return ': ' + context.raw + 'x dikunjungi';
                     }
                 }
             }
@@ -101,7 +61,7 @@ const config = {
                         size: 12
                     },
                     callback: function (value) {
-                        return value + ' unit';
+                        return value + 'x';
                     }
                 }
             },
