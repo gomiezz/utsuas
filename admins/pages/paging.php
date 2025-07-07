@@ -28,8 +28,12 @@
 
 	
 	
-	case 'login':include "pages/page-login.html";break;	
-	case 'register':include "pages/page-register.html";break;		
+	case 'rt':include "pages/website_profile/editRT.php";break;	
+	case 'br':include "pages/website_profile/editBR.php";break;	
+	case 'ft':include "pages/website_profile/editFT.php";break;	
+
+	case 'login':include "pages/page-login.php";break;	
+	case 'register':include "pages/page-register.php";break;		
 	case 'main':
 	default:include"pages/panelkanan.php";	
 	}

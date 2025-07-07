@@ -25,10 +25,13 @@ if(!isset($_SESSION['user'])){
   <!-- Marquee Text -->
   <div class="marquee">
         <div class="marquee-content">
-            <span><span class="highlight">🔥 PROMO SPESIAL! 🔥</span> Diskon 10% untuk semua produk processor Intel Core generasi terbaru</span>
-            <span><span class="highlight">🛒 Gratis Ongkir!</span> Untuk pembelian di atas Rp 5.000.000 ke seluruh Indonesia</span>
-            <span><span class="highlight">💻 Paket Komputer Lengkap!</span> Dapatkan paket gaming dengan harga spesial</span>
-            <span><span class="highlight">📞 Hubungi Kami:</span> 0859-5523-0855 (WhatsApp)</span>
+            <?php
+            $data = explode("|=|",mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM website_profile WHERE judul='rt'"))['nilai']);
+            for($i=-1;$i<count($data)-1;$i++){
+                $i++
+            ?>
+            <span><span class="highlight"><?= $data[$i] ?></span> <?= $data[$i+1] ?></span>
+            <?php } ?>
         </div>
     </div>
  <?php include"page/paging.php"?></div>
@@ -36,7 +39,7 @@ if(!isset($_SESSION['user'])){
 
  <!-- <?php include"page/.html"?> -->
 <div class="footer">
-<?php include"page/footer.html"?></div>
+<?php include"page/footer.php"?></div>
 <script src="js/script.js"></script>
 </body>
 </html>
