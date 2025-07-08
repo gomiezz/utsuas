@@ -18,7 +18,7 @@ $allKategori="";
                         <?php
                         while ($katRow = mysqli_fetch_assoc($kategori)) {
                             $allKategori = $allKategori.$katRow['nama'].",";
-                            if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM produk WHERE `kategori` = '".$katRow['id']."'"))>=1){
+                            if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM produk WHERE `kategori` = '".$katRow['id']."' AND `kategori` != '7'"))>=1){
                         ?>
 
                         <div class="component-category">
@@ -49,7 +49,7 @@ $allKategori="";
                         <h3>Ringkasan PC Anda</h3>
                         <div class="selected-components">
                             <?php
-                            $kategori = mysqli_query($conn, "SELECT * FROM kategori");
+                            $kategori = mysqli_query($conn, "SELECT * FROM kategori where `id` != '7'");
                             while ($katRow = mysqli_fetch_assoc($kategori)) {
                             ?>
                             <div class="component-select">

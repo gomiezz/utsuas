@@ -24,6 +24,9 @@
         .container div{
             height: 50px;
             background-color: darkgreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: white;
         }
         .brox{
@@ -32,25 +35,31 @@
     </style>
 </head>
 <body>
-    <h1>APA</h1>
+    <h1 id="apa">S</h1>
     <div class="container">
 
     </div>
 
     <script>
         let ray =[[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16,17,18,19,20],[21,22,23,24,25]];
+        let done=[];
         let cont = document.querySelector(".container");
+        let apa = document.querySelector("#apa");
         for(let i=0;i<ray.length;i++){
             for(let j=0;j<ray[i].length;j++){
                 let d =document.createElement("div");
-                d.textContent = ray[i][j];
+                // d.textContent = ray[i][j];
                 d.addEventListener('click',()=>clickble(d));
                 cont.append(d);
             }
         }
         function clickble(elm){
-            console.log(elm);
-            elm.classList.toggle("brox");
+            // elm.classList.toggle("brox");
+            elm.textContent = apa.textContent;
+            apa.textContent = apa.textContent=="S"?"O":"S";
+        }
+        function scan(){
+            
         }
     </script>
 </body>
