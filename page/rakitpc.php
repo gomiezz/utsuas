@@ -18,8 +18,9 @@ $allKategori="";
                         <?php
                         while ($katRow = mysqli_fetch_assoc($kategori)) {
                             $allKategori = $allKategori.$katRow['nama'].",";
+                            if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM produk WHERE `kategori` = '".$katRow['id']."'"))>=1){
                         ?>
-                        <!-- Processor -->
+
                         <div class="component-category">
                             <h3><?=$katRow['nama']?></h3>
                             <div class="component-options">
@@ -29,13 +30,16 @@ $allKategori="";
                                     $spek = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM nilai_spesifikasi WHERE `produk` = '".$proRow['id']."'"))['nilai'];
                                     if(!isset($spek)) $spek = "Tidak ada spesifikasi";
                                 ?>
+
                                 <div class="component-option" data-category="<?=$katRow['nama']?>" data-name="<?=$proRow['nama']?>" data-price="<?=$proRow['harga']?>">
                                     <h4><?=$proRow['nama']?></h4>
                                     <p><?=$spek?></p>
                                     <span class="price"></span>
                                 </div>
+                                <?php }?>
                             </div>
                         </div>
+
                         <?php }} ?>
 
                     </div>

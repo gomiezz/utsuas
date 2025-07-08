@@ -9,6 +9,7 @@
             margin: 0;
             background-color: grey;
             display: flex;
+            flex-direction: column;
             height: 100vh;
             justify-content: center;
             align-items: center;
@@ -31,6 +32,7 @@
     </style>
 </head>
 <body>
+    <h1>APA</h1>
     <div class="container">
 
     </div>
@@ -48,7 +50,7 @@
         }
         function clickble(elm){
             console.log(elm);
-            elm.classList.add("brox");
+            elm.classList.toggle("brox");
         }
     </script>
 </body>
