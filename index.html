@@ -4,22 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/chart.css">
     <style>
-        .chart-container{
-            background-color: black !important;
+        body{
+            margin:0;
+            overflow: hidden;
+        }
+        .container{
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #batang{
+            background-color: hsl(36, 39%, 61%);
+            height: 15%;
+            width: 80%;
+            border-radius: 0 100px 100px 0;
+            display: flex;
+            align-items: end;
+            z-index: 3;
+
+            animation: batamg 5s infinite;
+        }
+        #biji{
+            top: 70px;
+            position: relative;
+            background-color: hsl(36, 39%, 61%);
+            height: 100px;
+            width: 100px;
+            border-radius: 100%;
+            z-index: 2;
+        }
+        #biji:nth-child(2){
+            z-index: 1;
+            background-color: hsl(36, 39%, 51%);
+            right: 20px;
+        }
+        @keyframes batamg{
+            0%{transform: rotateZ(0deg);}
+            5%{transform: rotateZ(360deg);}
+            10%{transform: rotateZ(0deg);}
+            15%{transform: rotateZ(360deg);}
+            20%{transform: rotateZ(0deg);}
+            25%{transform: rotateZ(360deg);}
+            30%{transform: rotateZ(0deg);}
+            35%{transform: rotateZ(360deg);}
+            40%{transform: rotateZ(0deg);}
+            45%{transform: rotateZ(360deg);}
+            50%{transform: rotateZ(0deg);}
+            100%{transform: rotateZ(360deg);}
+            
         }
     </style>
-    
 </head>
 <body>
-     <div class="chart-container">
-        <div class="chart-wrapper">
-            <canvas id="salesChart"></canvas>
-        </div>
+    <div class="container">
+        <div id="biji"></div>
+        <div id="batang"></div>
+        <div id="biji"></div>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="js/chart.js"></script>
 </body>
 </html>
