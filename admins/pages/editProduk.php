@@ -14,7 +14,7 @@ if (isset($_POST['update'])) {
     $stok = $_POST['stok'];
     $rating = $_POST['rating'];
 
-    $upload_path = "gambar";
+    $upload_path = "../gambar";
     if (!is_dir($upload_path)) {
         mkdir($upload_path, 0777, true);
     }
@@ -104,7 +104,7 @@ if (isset($_POST['update'])) {
         nama='$nama',
         harga='$harga',
         deskripsi='$deskripsi',
-        gambar='$gambar',
+        gambar='gambar/$gambar',
         thumbnail1='$th1',
         thumbnail2='$th2',
         thumbnail3='$th3',

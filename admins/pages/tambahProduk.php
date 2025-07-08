@@ -8,13 +8,13 @@ if (isset($_POST['submit'])) {
     $stok = $_POST['stok'];
     $rating = $_POST['rating'];
 
-    $gambar = "gambar/".$_FILES['gambar']['name'];
+    $gambar = $_FILES['gambar']['name'];
     $th1 = $_FILES['thumbnail1']['name'];
     $th2 = $_FILES['thumbnail2']['name'];
     $th3 = $_FILES['thumbnail3']['name'];
     $th4 = $_FILES['thumbnail4']['name'];
 
-    $upload_path = "gambar";
+    $upload_path = "../gambar";
     if (!is_dir($upload_path)) {
         mkdir($upload_path, 0777, true);
     }
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     move_uploaded_file($_FILES['thumbnail4']['tmp_name'], "$upload_path/$th4");
 
     mysqli_query($conn, "INSERT INTO produk (nama, harga, deskripsi, kategori, gambar, thumbnail1, thumbnail2, thumbnail3, thumbnail4, stok, rating)
-    VALUES ('$nama', '$harga', '$deskripsi', '$kategori', '$gambar', '$th1', '$th2', '$th3', '$th4', '$stok', '$rating')");
+    VALUES ('$nama', '$harga', '$deskripsi', '$kategori', 'gambar/$gambar', '$th1', '$th2', '$th3', '$th4', '$stok', '$rating')");
 
     // TIDAK PAKAI HEADER, pakai SCRIPT
     echo "<script>alert('Produk berhasil ditambahkan!'); window.location.href='index.php?page=produk';</script>";

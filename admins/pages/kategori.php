@@ -11,17 +11,19 @@ include 'koneksi.php';
   <a href="index.php?page=tambahKategori" class="btn">+ Tambah Kategori</a>
   <table>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Nama</th>
       <th>Spesifikasi</th>
       <th>Aksi</th>
     </tr>
     <?php
+    $noUrut =0;
     $produk = mysqli_query($conn, "SELECT * FROM kategori");
     while ($p = mysqli_fetch_assoc($produk)) {
+      $noUrut++;
     ?>
     <tr>
-      <td><?= $p['id'] ?></td>
+      <td><?= $noUrut ?></td>
       <td><?= $p['nama'] ?></td>
       <td><?= $p['spesifikasi'] ?></td>
       <td>

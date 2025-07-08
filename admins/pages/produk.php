@@ -11,7 +11,7 @@ include 'koneksi.php';
   <a href="index.php?page=tambahProduk" class="btn">+ Tambah Produk</a>
   <table>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Nama</th>
       <th>Kategori</th>
       <th>Deskripsi</th>
@@ -23,7 +23,9 @@ include 'koneksi.php';
     </tr>
     <?php
     $produk = mysqli_query($conn, "SELECT * FROM produk");
+    $noUrut =0;
     while ($p = mysqli_fetch_assoc($produk)) {
+      $noUrut++;
       $spek = mysqli_query($conn, "SELECT * FROM kategori WHERE id = ".$p['kategori']);
       $asoc = mysqli_fetch_assoc($spek);
       $nilai_spek = mysqli_query($conn, "SELECT * FROM nilai_spesifikasi WHERE produk = ".$p['id']);
@@ -31,7 +33,7 @@ include 'koneksi.php';
       if(mysqli_num_rows($nilai_spek)>0) $_nilai_spek = explode(",", mysqli_fetch_assoc($nilai_spek)['nilai']);
     ?>
     <tr>
-      <td><?= $p['id'] ?></td>
+      <td><?= $noUrut ?></td>
       <td><?= $p['nama'] ?></td>
       <td><?= $asoc['nama'] ?></td>
       <td><?= $p['deskripsi'] ?></td>

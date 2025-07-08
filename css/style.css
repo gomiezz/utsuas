@@ -280,6 +280,10 @@
             margin-bottom: 15px;
         }
         
+        .btn-produk-filter{
+            background-color: #1e3c72;
+        }
+
         .price {
             font-size: 22px;
             font-weight: 700;

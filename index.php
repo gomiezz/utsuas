@@ -5,7 +5,7 @@ include("./admins/pages/koneksi.php");
 if(!isset($_SESSION['user'])){
     $_SESSION['user'] = rand(0,572025);
 }
-// mysqli_query($conn, "INSERT INTO `pengunjung` (`user`,`bulan`) VALUES ('".$_SESSION['user']."','".date("F Y")."')");
+mysqli_query($conn, "INSERT INTO `pengunjung` (`user`,`bulan`) VALUES ('".$_SESSION['user']."','".date("F Y")."')");
 
 ?>
 <!DOCTYPE php, name : index.php>
@@ -35,7 +35,6 @@ if(!isset($_SESSION['user'])){
         </div>
     </div>
  <?php include"page/paging.php"?></div>
- <?php include"page/chat.html"?></div>
 
  <!-- <?php include"page/.html"?> -->
 <div class="footer">

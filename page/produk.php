@@ -124,10 +124,18 @@ if(isset($_GET['addcart'])){
 </head>
 
 <body>
+  <?php
+    $sql = "SELECT * FROM kategori";
+    $query = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($query)) {
+    ?>
+    <a href="?page=produk&kat=<?=$row['id']?>"><button class="btn-produk-filter" style="background-color: #2a5298;color: white;font-size: 1.2rem;padding: 10px 20px;border-radius: 10px;margin-top:10px;"><?=$row['nama']?></button></a>
+    <?php } ?>
 
   <div class="products">
     <?php
     $sql = "SELECT * FROM produk";
+    if(isset($_GET['kat'])) $sql = "SELECT * FROM produk WHERE `kategori` = '".$_GET['kat']."'"; 
     $query = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($query)) {
     ?>

@@ -11,20 +11,22 @@ include 'koneksi.php';
   <a href="index.php?page=tambahNilai" class="btn">+ Tambah Nilai</a>
   <table>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Produk</th>
       <th>Spesifikasi</th>
       <th>Acksi</th>
     </tr>
     <?php
     $produk = mysqli_query($conn, "SELECT * FROM nilai_spesifikasi");
+    $noUrut=0;
     while ($p = mysqli_fetch_assoc($produk)) {
+      $noUrut++;
       $nproduk = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM produk where id='".$p['produk']."'"))['nama'];
       $jspek = explode(",", mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kategori where id='".mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM produk where id='".$p['produk']."'"))['kategori']."'"))['spesifikasi']);
       $nspek = explode(",", $p['nilai']);
     ?>
     <tr>
-      <td><?= $p['id'] ?></td>
+      <td><?= $noUrut ?></td>
       <td><?= $nproduk ?></td>
       <td>
       <?php

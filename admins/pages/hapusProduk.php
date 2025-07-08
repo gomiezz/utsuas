@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     // Hapus file gambar (opsional kalau mau)
     $result = mysqli_query($conn, "SELECT gambar, thumbnail1, thumbnail2, thumbnail3, thumbnail4 FROM produk WHERE id='$id'");
     $row = mysqli_fetch_assoc($result);
-    $folder = "gambar";
+    $folder = "../gambar";
     @unlink("$folder/" . $row['gambar']);
     @unlink("$folder/" . $row['thumbnail1']);
     @unlink("$folder/" . $row['thumbnail2']);
