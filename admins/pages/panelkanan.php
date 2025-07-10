@@ -1,3 +1,21 @@
+<?php
+include_once("pages/koneksi.php");
+$q1 = mysqli_query($conn, "SELECT * FROM `pengunjung` ORDER BY `id` DESC");
+$bulan = array();
+$user = array();
+$nowlan = "";
+$nowser = 0;
+while ($data = mysqli_fetch_array($q1)) {
+    if($nowlan!==$data['bulan'] && count($bulan)>=12){$user[] = $nowser;break;}
+    if($nowlan!==$data['bulan']){
+        $bulan[]="'".$data['bulan']."'";
+        if(count($bulan)>1)$user[] = $nowser;
+        $nowser=0;
+    }
+    $nowlan = $data['bulan'];
+    $nowser++;
+}
+?>
 <header id="header" class="header">
             <div class="header-menu">
                 <div class="col-sm-7">
@@ -50,3 +68,30 @@
         </header>
 		
 		<h1>Selamat Datang <?=$_SESSION['admin']?></h1>
+
+        <div class="container">
+    <!-- Chart Container -->
+    <div class="chart-container">
+        <div class="chart-wrapper">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+</div>
+<script>
+    // Data untuk chart
+    const salesData = {
+        labels: [<?=implode(", ",array_reverse($bulan))?>],
+        datasets: [{
+            label: 'Dikunjungi',
+            data: [<?=implode(", ",array_reverse($user))?>],
+            backgroundColor: 'rgba(30, 60, 114, 0.7)',
+            borderColor: 'rgba(30, 60, 114, 1)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+        }]
+    };
+
+</script>
+<script src="../js/chart.js"></script>
+

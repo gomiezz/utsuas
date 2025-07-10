@@ -2,6 +2,8 @@
 <?php
 include_once("./admins/pages/koneksi.php");
 $q1 = mysqli_query($conn, "SELECT * FROM `pengunjung` ORDER BY `id` DESC");
+$q2 = mysqli_query($conn, "SELECT * FROM `website_profile` WHERE `judul` = 'tt'");
+$tt = explode("|=|",mysqli_fetch_assoc($q2)['nilai']);
 $bulan = array();
 $user = array();
 $nowlan = "";
@@ -32,23 +34,14 @@ while ($data = mysqli_fetch_array($q1)) {
                     alt="Tentang Kami">
             </div>
             <div class="about-text">
-                <h3>TechShop - Solusi Komputer Terbaik</h3>
-                <p>TechShop didirikan pada tahun 2020 dengan visi untuk menyediakan komponen komputer berkualitas tinggi
-                    dengan harga yang kompetitif. Selama lebih dari satu dekade, kami telah melayani ribuan pelanggan
-                    yang puas, mulai dari gamers, profesional kreatif, hingga perusahaan besar.</p>
-                <p>Kami bangga menjadi mitra terpercaya dalam membangun PC impian Anda. Tim kami terdiri dari para ahli
-                    yang berpengalaman dan selalu mengikuti perkembangan terbaru di dunia teknologi.</p>
-                <p>Di TechShop, kami tidak hanya menjual produk, tetapi juga memberikan solusi lengkap untuk kebutuhan
-                    komputasi Anda. Setiap produk yang kami jual melalui proses quality control yang ketat untuk
-                    memastikan kualitas terbaik untuk pelanggan kami.</p>
+                <h3><?=$tt[0]?></h3>
+                <p><?=$tt[1]?></p>
             </div>
         </div>
     </div>
 </section>
 
 <div class="container">
-    
-
     <!-- Chart Container -->
     <div class="chart-container">
         <div class="chart-wrapper">
